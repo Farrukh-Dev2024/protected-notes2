@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Administrator",
+    "email": "farrukhaleem.dev2024@gmail.com",
+    "password": "",
+    "role": 1,
+    "createdAt": "2025-04-16T12:05:26.820Z",
+    "updatedAt": "2025-04-16T12:03:27.496Z",
+    "lastLogin": null,
+    "logs": null,
+    "isBanned": false
+  },
+  {
+    "id": 2,
+    "name": "Regular User1",
+    "email": "user@example.com",
+    "password": "",
+    "role": 5,
+    "createdAt": "2025-04-16T12:32:35.965Z",
+    "updatedAt": "2025-04-16T12:32:35.965Z",
+    "lastLogin": null,
+    "logs": null,
+    "isBanned": false
+  },
+  {
+    "id": 3,
+    "name": "Regular User2",
+    "email": "user2@example.com",
+    "password": "",
+    "role": 5,
+    "createdAt": "2025-04-16T12:32:35.965Z",
+    "updatedAt": "2025-04-16T12:32:35.965Z",
+    "lastLogin": null,
+    "logs": null,
+    "isBanned": false
+  },
+  {
+    "id": 4,
+    "name": "Regular User2",
+    "email": "user3@example.com",
+    "password": "",
+    "role": 5,
+    "createdAt": "2025-04-16T12:32:35.965Z",
+    "updatedAt": "2025-04-16T12:32:35.965Z",
+    "lastLogin": null,
+    "logs": null,
+    "isBanned": false
+  }
+]

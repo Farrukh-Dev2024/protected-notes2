@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "List" ADD COLUMN     "order" INTEGER NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE "ListItem" ADD COLUMN     "order" INTEGER NOT NULL DEFAULT 0;

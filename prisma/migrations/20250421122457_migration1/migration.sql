@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "messages" TEXT DEFAULT '',
+ALTER COLUMN "logs" SET DEFAULT '',
+ALTER COLUMN "logs" SET DATA TYPE TEXT;

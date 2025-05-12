@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  name       String    @default("")
+  email      String    @unique
+  password   String
+  role       Int       @default(5) // 5 = Normal user 
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  lastlogin  DateTime?
+  logs       String?   @default("")
+  isBanned   Boolean   @default(false)
+  messages   String?   @default("")
+
+  lists      List[]   // ⬅️ One-to-many relation to Lists
+}
+
+model List {
+  id         Int        @id @default(autoincrement())
+  userid     Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  order      Int        @default(0)
+  title      String?   @default("")
+
+  user       User       @relation(fields: [userid], references: [id])
+  items      ListItem[] // ⬅️ One-to-many relation to ListItem
+}
+
+model ListItem {
+  id      Int       @id @default(autoincrement())
+  listid  Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt @default(now())
+  amount  Float
+  data    String
+  order   Int       @default(0)
+
+  list    List     @relation(fields: [listid], references: [id])
+}
