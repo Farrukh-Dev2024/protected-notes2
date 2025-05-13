@@ -54,8 +54,11 @@ export async function getUserLists(identifier: { email?: string }) {
     where: { email: identifier.email },
     include: {
       lists: {
+        orderBy: { order: 'asc' },
         include: {
-          items: true,
+          items: {
+            orderBy: { order: 'asc' },
+          },
         },
       },
     },    

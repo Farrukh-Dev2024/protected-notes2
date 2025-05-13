@@ -50,5 +50,5 @@ model ListItem {
   data    String
   order   Int       @default(0)
 
-  list    List     @relation(fields: [listid], references: [id])
+  list    List     @relation(fields: [listid], references: [id],onDelete: Cascade)
 }

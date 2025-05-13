@@ -79,7 +79,7 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
           <div className="grid grid-cols-2 gap-4">
             {/* Left aligned lines - hidden below md */}
             <div className="text-left space-y-1">
-              <p>{list.items?.[0]?.data || ""}</p>
+              <p dangerouslySetInnerHTML={{__html: list.items?.[0]?.data || ""}} />
             </div>
             {/* Right aligned info */}
             <div className="text-right space-y-1 flex flex-col justify-between items-right ">
