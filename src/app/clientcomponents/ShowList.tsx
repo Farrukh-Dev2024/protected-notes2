@@ -70,20 +70,11 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
           onClick={onSelectedClick}
         >
           {/* Responsive title and updated date on same line below md */}
-          {/* <div className="flex justify-between items-center mb-4 md:block">
+          <div className="flex justify-between items-center mb-4 ">
             <h1 className="w-1/2 truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
               {list.title || ""}
             </h1>
-            <div className="flex justify-between items-center">
-              <p className="text-right mr-2 text-sm md:hidden">
-                {list.updatedAt.toLocaleString()}
-              </p>
-              <Button onClick={onExpandClick} className="text-sm md:hidden ml-auto px-4 py-2 transition duration-300 hover:shadow-lg hover:shadow-white/50">
-                Expand
-              </Button>
-            </div>
-              
-          </div> */}
+          </div>          
           {/* Responsive two-column layout */}
           <div className="grid grid-cols-2 gap-4">
             {/* Left aligned lines - hidden below md */}

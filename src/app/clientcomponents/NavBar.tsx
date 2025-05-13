@@ -96,7 +96,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
   }  
   return (
     <header
-      className={`p-4 sticky top-0 left-0 right-0 z-50 transition-all duration-700 ${
+      className={`min-w-sm p-4 sticky top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
       data-slot="header"
