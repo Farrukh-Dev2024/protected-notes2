@@ -70,7 +70,7 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
           onClick={onSelectedClick}
         >
           {/* Responsive title and updated date on same line below md */}
-          <div className="flex justify-between items-center mb-4 md:block">
+          {/* <div className="flex justify-between items-center mb-4 md:block">
             <h1 className="w-1/2 truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
               {list.title || ""}
             </h1>
@@ -83,25 +83,25 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
               </Button>
             </div>
               
-          </div>
+          </div> */}
           {/* Responsive two-column layout */}
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {/* Left aligned lines - hidden below md */}
-            <div className="text-left space-y-1 hidden md:block">
+            <div className="text-left space-y-1">
               <p>{list.items?.[0]?.data || ""}</p>
             </div>
             {/* Right aligned info */}
             <div className="text-right space-y-1 flex flex-col justify-between items-right ">
-              <div className='hidden md:block'>
+              <div className=''>
                 <Button onClick={onExpandClick} className="text-sm  ml-auto px-4 py-2 transition duration-300 hover:shadow-lg">
                   Expand
                 </Button>
               </div>
               
-              <p className="hidden text-sm md:block">
+              <p className="hidden text-xs md:block">
                 Created: {list.createdAt.toLocaleString()}
               </p>
-              <p className="hidden text-sm md:block">
+              <p className="text-xs">
                 Updated: {list.updatedAt.toLocaleString()}
               </p>
             </div>
@@ -147,7 +147,7 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
               <div className="mb-4 space-y-1">
                 {/* First row: item.data (left), item.amount (right) */}
                 <div className="flex justify-between items-center text-base">
-                  <p>{item.data}</p>
+                  <p dangerouslySetInnerHTML={{ __html: item.data }} />
                   <p>{item.amount}</p>
                 </div>
 
@@ -173,14 +173,14 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
     <>
       {appData?.expandedList === null && (
         appData.userLists?.map((list, index) => (
-          <div key={index} className="w-full px-4 m-1">
+          <div key={index} className="w-full p-1 md:p-4">
             {generateLists(list)}
-          </div>
+          </div>          
         )) 
       )}
 
       {appData?.expandedList !== null && (
-        <div className="w-full px-4 m-1">
+        <div className="w-full p-1 md:p-4">
           {generateListExpanded()}
         </div>
 

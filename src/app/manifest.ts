@@ -4,25 +4,28 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Protected Notes',
     short_name: 'Protected Notes',
-    description: 'A modern note taking app with end to end encryption',
+    description: 'A modern note taking app with end to end encryption,Could be used as single entry accounting system.',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
     theme_color: '#000000',
     "screenshots": [
-        {
-          "src": "AppImages/screenshots/1.png",
-          "type": "image/png",
-          "sizes": "1920x1080",
-          "form_factor": "wide"
-        },
-        {
-            "src": "AppImages/screenshots/1.png",
-            "type": "image/png",
-            "sizes": "1920x1080",
-            "form_factor": "narrow"
-        }
-      ],
+      {
+        "src": "AppImages/screenshots/Protected-Notes Image1.png",
+        "type": "image/png",
+        "sizes": "1920x1080",
+        "form_factor": "wide",
+        "label": "Wide layout screenshot"
+      },
+      {
+        "src": "AppImages/screenshots/Protected-Notes Image1.png",
+        "type": "image/png",
+        "sizes": "1080x1920",
+        "form_factor": "narrow",
+        "label": "Mobile layout screenshot"
+      }
+    ],
+
     "icons": [
         {
         "src": "AppImages/windows11/SmallTile.scale-100.png",

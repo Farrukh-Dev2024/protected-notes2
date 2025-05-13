@@ -150,5 +150,5 @@
   @apply flex min-h-screen min-w-sm justify-center bg-gray-100 dark:bg-gray-900 p-4;
 }
 .home-style{
-  @apply w-full  rounded-xl bg-white dark:bg-gray-800 p-8 shadow-lg;
+  @apply w-full p-1 rounded-xl bg-white dark:bg-gray-800 md:p-8 shadow-lg;
 } 

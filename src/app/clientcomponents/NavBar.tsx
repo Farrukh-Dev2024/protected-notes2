@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu,X,LogIn,LogOut,CircleHelp, Divide} from "lucide-react";
+import { Menu,X,LogIn,LogOut,CircleHelp, Divide,ClipboardList} from "lucide-react";
 import { BsGear } from "react-icons/bs";
 import logo from "@/assets/logo.png"
 import {ThemeToggler} from "@/app/clientcomponents/ThemeToggler";
@@ -26,7 +26,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
       {id:1,text:"plus",display:"➕",requirelogin:true},
       {id:2,text:"minus",display:"➖",requirelogin:true},
       {id:3,text:"edit",display:"✏️",requirelogin:true},
-      {id:4,text:"list",display:"🗐",requirelogin:true},
+      {id:4,text:"list",display:<ClipboardList/>,requirelogin:true},
       {id:5,text:"lock",display:"🔒",requirelogin:true},
       {id:6,text:"key",display:"🔑",requirelogin:true},
       {id:7,text:"login",display:<LogIn/>,requirelogin:false},
@@ -70,6 +70,8 @@ const NavBar:React.FC<INavBarProps> = (props) => {
     }else{
       if (setAppData) {
         setAppData(prev => ({ ...prev, menuclicked: item }));
+      }else{
+        alert("You need to be in a list to do this.");
       }
       //console.log("MenuClicked: %o",item);
     }
@@ -99,7 +101,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
       }`}
       data-slot="header"
     >
-      <div className="container-custom flex items-center justify-between h-16 md:h-20 md:p-4 md:mx-16">
+      <div className="container-custom flex items-center justify-between h-20 md:h-20 md:p-4 md:mx-4">
         {/* Logo with Image */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
@@ -109,7 +111,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
             height={64} // Customize height
             priority // Loads the logo immediately
           />
-          <span className="overflow-hidden text-xl md:text-xl font-bold tracking-tight">Protected-Notes</span>
+          <span className="overflow-hidden text-sm md:text-xl font-bold tracking-tight">Protected-Notes</span>
         </Link>
 
         {/* Desktop Navigation */}

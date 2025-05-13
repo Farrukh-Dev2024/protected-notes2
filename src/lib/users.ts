@@ -400,10 +400,25 @@ export async function deleteListItem(listid: number,itemid: number) {
 }
 export async function escapeHtml(str: string): Promise<string> {
   const truncated = str.length > 600 ? str.slice(0, 600) + "......." : str;
-  return str
+
+  // Allow only specific tags
+  const allowedTags = /<\/?(b|i|u|br|span)>/gi;
+
+  // Temporarily escape allowed tags
+  const preserved = truncated.replace(allowedTags, (match) =>
+    `%%${btoa(match)}%%`
+  );
+
+  // Escape the rest of the HTML
+  const escaped = preserved
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+
+  // Restore allowed tags
+  return escaped.replace(/%%(.*?)%%/g, (_, encoded) =>
+    atob(encoded)
+  );
 }
