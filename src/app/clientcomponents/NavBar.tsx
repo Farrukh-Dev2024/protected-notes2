@@ -3,8 +3,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu,X,LogIn,LogOut,CircleHelp, Divide,ClipboardList} from "lucide-react";
-import { BsGear } from "react-icons/bs";
+import { Menu,X,LogIn,LogOut,CircleHelp, Divide,ClipboardList,Plus,Minus,Pencil} from "lucide-react";
+import { BsGear,BsChatFill } from "react-icons/bs";
+
 import logo from "@/assets/logo.png"
 import {ThemeToggler} from "@/app/clientcomponents/ThemeToggler";
 //import { IProtectedNotesProps } from "@/lib/types";
@@ -23,16 +24,18 @@ const NavBar:React.FC<INavBarProps> = (props) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuList, setMenuList] = useState(
     [
-      {id:1,text:"plus",display:"➕",requirelogin:true},
-      {id:2,text:"minus",display:"➖",requirelogin:true},
-      {id:3,text:"edit",display:"✏️",requirelogin:true},
+      {id:1,text:"plus",display:<Plus/>,requirelogin:true},
+      {id:2,text:"minus",display:<Minus/>,requirelogin:true},
+      {id:3,text:"edit",display:<Pencil/>,requirelogin:true},
       {id:4,text:"list",display:<ClipboardList/>,requirelogin:true},
-      {id:5,text:"lock",display:"🔒",requirelogin:true},
-      {id:6,text:"key",display:"🔑",requirelogin:true},
-      {id:7,text:"login",display:<LogIn/>,requirelogin:false},
-      {id:8,text:"logout",display:<LogOut/>,requirelogin:true},
-      {id:9,text:"help",display:<CircleHelp/>,requirelogin:false},                    
-      {id:10,text:"usersettings",display:<BsGear/>,requirelogin:true},
+      {id:5,text:"login",display:<LogIn/>,requirelogin:false},
+      {id:6,text:"logout",display:<LogOut/>,requirelogin:true},
+      {id:7,text:"help",display:<CircleHelp/>,requirelogin:false},                    
+      {id:8,text:"usersettings",display:<BsGear/>,requirelogin:true},
+      {id:9,text:"contactme",display:<BsChatFill/>,requirelogin:false},      
+      // {id:10,text:"lock",display:"🔒",requirelogin:true},
+      // {id:11,text:"key",display:"🔑",requirelogin:true},
+
     ]);
     let isUserLoggedIn = false;
     if (email){
@@ -67,6 +70,8 @@ const NavBar:React.FC<INavBarProps> = (props) => {
       return(LogOutClicked())
     }else if (item=="usersettings"){
       return(UserSettingsClicked())
+    }else if (item=="contactme"){
+      return(ContactMeClicked())  
     }else{
       if (setAppData) {
         setAppData(prev => ({ ...prev, menuclicked: item }));
@@ -94,6 +99,12 @@ const NavBar:React.FC<INavBarProps> = (props) => {
       window.location.href = "/?page=usersettings"
     );
   }  
+  function ContactMeClicked() {
+    console.log("ContactMeClicked");
+    return(
+      window.location.href = "/?page=contactme"
+    );
+  }    
   return (
     <header
       className={`min-w-sm p-4 sticky top-0 left-0 right-0 z-50 transition-all duration-700 ${

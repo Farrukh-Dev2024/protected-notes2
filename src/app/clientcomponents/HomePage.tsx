@@ -150,7 +150,7 @@ const HomePage: React.FC<IHomePageProps> = ({ email }) => {
 
   React.useEffect(() => {
     //console.log("AppData changed:", appData);
-
+    
     if (menuclicked!=="") {
       console.log("Menu clicked:", menuclicked);
       if (menuclicked === "edit" && selectedList && !expandedList)  {

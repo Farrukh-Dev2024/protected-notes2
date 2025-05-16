@@ -9,6 +9,7 @@ import { auth } from "@/lib/auth"
 import {createUser,getUser,updateUser,deleteUser,comparePassword} from "@/lib/users"
 import { InstallPrompt, PushNotificationManager } from "./clientcomponents/PushNotificationManager";
 import HomePage from "./clientcomponents/HomePage";
+import ContactMe from "./clientcomponents/ContactMe";
 
 
 export default async function Home({params,searchParams}:{params:Promise<{showpage: string,}>;searchParams:Promise<{page: string,}>} ) {
@@ -68,6 +69,14 @@ export default async function Home({params,searchParams}:{params:Promise<{showpa
                 <h2 className="form-h2-style !text-red-500">Your account is blocked</h2>
               </div>  
             </div>
+      </div>
+    );
+  }
+  if (page=="contactme"){
+    return (
+      <div className="bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
+        <NavBar email={userdb?.email as string} />
+        <ContactMe />
       </div>
     );
   }
