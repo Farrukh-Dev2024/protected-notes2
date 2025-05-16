@@ -5,9 +5,8 @@ import AuthorPic from "@/assets/author3.png"
 import { frame, motion } from 'motion/react';
 import "@/app/extraanimations.css";
 
-interface IContactMeProps {}
 
-const ContactMe: React.FunctionComponent<IContactMeProps> = () => {
+const ContactMe: React.FunctionComponent = () => {
   const techlist: string[] = [
     "ReactJs", "NextJs", "TailWindCss", "TypeScript", "ModernTheming", "Prisma",
     "ShadCN", "BcryptJs", "Motion", "AuthJs", "Zod", "Web-Push"
