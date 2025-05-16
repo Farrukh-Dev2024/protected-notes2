@@ -83,7 +83,7 @@ const ContactMe: React.FunctionComponent = () => {
               </ol>
               <p className="mt-4 text-xs flex flex-wrap">
                 {techlist.map((tech, index) => (
-                  <span key={index} className="bg-amber-200 border rounded-lg m-1 px-2 py-0.5 text-xs">
+                  <span key={index} className="bg-amber-200 !text-black border rounded-lg m-1 px-2 py-0.5 text-xs">
                     {tech}
                   </span>
                 ))}
