@@ -51,7 +51,7 @@ const ContactMe: React.FunctionComponent = () => {
             >
               <p className="text-lg font-bold break-words bg-gradient-to-r from-green-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent drop-shadow-lg animate-rainbow">
                 Email:
-                    <span className="block extraanimated bounce-in text-black dark:text-white p-2 break-words max-w-full">
+                    <span className="block extraanimated ebounce-in text-black dark:text-white p-2 break-words max-w-full">
                         <a href="mailto:farrukhaleem.dev2024@gmail.com" className="hover:underline break-words">
                         farrukhaleem.dev2024@gmail.com
                         </a>

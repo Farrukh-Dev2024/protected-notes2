@@ -37,7 +37,7 @@ model List {
   order      Int        @default(0)
   title      String?   @default("")
 
-  user       User       @relation(fields: [userid], references: [id])
+  user       User       @relation(fields: [userid], references: [id],onDelete: Cascade)
   items      ListItem[] // ⬅️ One-to-many relation to ListItem
 }
 
