@@ -21,12 +21,14 @@ export default async function Home({params,searchParams}:{params:Promise<{showpa
   const session = await auth()
   let userdb = null;
   let isBanned = false;
+  let showJoyRide = false;
   userdb = await getUser({email: session?.user?.email as string  })
 
   if (session && userdb==null){
     userdb = await createUser(session.user?.email as string, "123456789");
     userdb = await updateUser(userdb.id, {name: "NewUser" , messages: "We have created password for you which is '123456789',Kindly change it to your own password;"});
     userdb = await getUser({email: session.user?.email as string  })
+    showJoyRide = true;
   }
   if (userdb){
     //console.log("userdb %o",userdb);
@@ -88,7 +90,7 @@ export default async function Home({params,searchParams}:{params:Promise<{showpa
       {session ? 
           <>
             <CheckLogin />
-            <HomePage email={userdb?.email as string}/>
+            <HomePage email={userdb?.email as string} showJoyRide={showJoyRide }/>
             {/* <LogOutForm />  */}
           </>
       :

@@ -10,8 +10,8 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { read } from 'fs';
 import YesNoMessageBox from './YesNoMessageBox';
-
 import  EditListItem  from '@/app/clientcomponents/EditListItem';
+import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS, CallBackProps } from 'react-joyride';
 
 type ListWithItems = Prisma.ListGetPayload<{
   include: { items: true };
@@ -35,9 +35,28 @@ export const AppContext = React.createContext<IAppContextValue | undefined>(unde
 
 interface IHomePageProps {
   email: string;
+  showJoyRide: boolean;
 }
 
-const HomePage: React.FC<IHomePageProps> = ({ email }) => {
+const joyridesteps = [
+  {
+    target: '.joyride-step1',
+    content: 'In the Navigation bar, you can find the various button. + to add lists , - to remove lists , click expand to expand the list and see the items in it,we have added demo list you can delete any time.',
+    disableBeacon: true,
+  },
+
+];
+
+const joyridestepssmall = [
+  {
+    target: '.joyride-step1small',
+    content: 'In the Navigation bar, you can find the various button. + to add lists , - to remove lists , click expand to expand the list and see the items in it,we have added demo list you can delete any time.',
+    Placement: "bottom",
+    disableBeacon: true,
+  },
+
+];
+const HomePage: React.FC<IHomePageProps> = ({ email,showJoyRide }) => {
   const router = useRouter();
   const [appData, setAppData] = React.useState<IAppContext>({ email, menuclicked: "" ,userLists: null ,selectedList: null, expandedList: null , selectedListItem: null});
 
@@ -55,6 +74,10 @@ const HomePage: React.FC<IHomePageProps> = ({ email }) => {
 
   const {email : memail, menuclicked,userLists,selectedList,expandedList,selectedListItem} = appData;
 
+  const [canuseJoyRide,setcanuseJoyRide] = React.useState(false);
+  const [isAboveMd, setIsAboveMd] = React.useState(false);
+  const [tourKey, setTourKey] = React.useState(0); // force re-render
+  const [tourRun, settourRun] = React.useState(true);
 
   const fnSaved_EditListTitle = async (title: string) => {
     const selectedListTitle = appData.userLists?.find((list) => list.id === appData.selectedList)?.title || "";
@@ -188,11 +211,27 @@ const HomePage: React.FC<IHomePageProps> = ({ email }) => {
         setOpenYesNoMessageBox(true);
       }            
 
+      if (menuclicked === "help" )  {
+        settourRun(true);
+        setTourKey((prev) => prev + 1); // force re-render
+        setcanuseJoyRide(true);
+        // setTimeout(() => {
+        //   settourRun(false);
+        // }, 1000); // 1000 milliseconds = 1 second
+      }                  
       setAppData((prev)=>({ ...prev, menuclicked: "" }));
     }
   },[menuclicked]);
+
+
+  React.useEffect(() => {
+
+    const isAboveMd = setIsAboveMd(window.matchMedia("(min-width: 768px)").matches);
+    setcanuseJoyRide(showJoyRide);
+  }, []);
   return (
     <AppContext.Provider value={{ appData, setAppData }}>
+      <NavBar email={email} />
       <div className="home-container-style">
         <div className="home-style">
           <ShowList email={email} noofUpdates={noofUpdates}/>
@@ -223,6 +262,18 @@ const HomePage: React.FC<IHomePageProps> = ({ email }) => {
           />
         </div>
       </div>
+      {canuseJoyRide ? <Joyride 
+                          steps={ isAboveMd ? joyridesteps : joyridestepssmall } run={tourRun} key={tourKey} stepIndex={0}
+                          callback={(data)=>{
+                            const { action, index, origin, status, type } = data;
+
+                            // Tour finished or user closed it
+                            if (action === ACTIONS.CLOSE){
+                              settourRun(false);
+                            }
+                          }}
+                          /> : ""}
+
     </AppContext.Provider>
   );
 };

@@ -128,7 +128,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
         {/* Desktop Navigation */}
         <div className="flex items-end md:items-center">
             <ThemeToggler />
-          <nav className="hidden md:flex flex-wrap items-center space-x-8" data-slot="nav">
+          <nav className="joyride-step1 hidden md:flex flex-wrap items-center space-x-8" data-slot="nav">
             {menuList.map((item) => (
               ( (item.requirelogin && isUserLoggedIn) || (!item.requirelogin && (item.text!="login" || !isUserLoggedIn)) ) ? 
               //(true) ?
@@ -164,7 +164,7 @@ const NavBar:React.FC<INavBarProps> = (props) => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-background border-b" data-slot="mobile-menu">
-          <div className="container-custom py-4 flex flex-col space-y-4">
+          <div className="joyride-step1small container-custom py-4 flex flex-col space-y-4">
 
           {menuList.map((item) => (
               ( (item.requirelogin && isUserLoggedIn) || (!item.requirelogin && (item.text!="login" || !isUserLoggedIn)) ) ? 

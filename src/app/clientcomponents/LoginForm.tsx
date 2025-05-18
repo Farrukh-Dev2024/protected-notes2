@@ -133,7 +133,13 @@ const loginSchema = z.object({
             </div>
 
             <div className="text-right text-sm">
-              <Link href="/forgot-password" className="form-link-style">
+              <Link 
+                href="#" className="form-link-style"
+                onClick={(e) => {
+                  e.preventDefault()
+                  alert('Forgot password kindly click on google login button to login or request password reset [default password is 123456789]')
+                } }
+              >
                 Forgot password?
               </Link>
             </div>

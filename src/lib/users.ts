@@ -23,6 +23,15 @@ export async function createUser(email: string, password: string) {
     data: {
       email,
       password: hashedPassword,
+      lists: {
+        create: [
+          { title: "MyExpenses", order: 0, items: { create: [
+              { data: "Bought MS Office", amount: 10, order: 0 },
+              { data: "Bought GTA 5", amount: 20, order: 1 },
+              { data: "Bought Tekken 7", amount: 30, order: 2 },
+            ] } },
+        ],
+      }  
     },
   })
 }

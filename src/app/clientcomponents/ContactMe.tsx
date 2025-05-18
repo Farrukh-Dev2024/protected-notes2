@@ -9,7 +9,6 @@ import "@/app/extraanimations.css";
 const ContactMe: React.FunctionComponent = () => {
   const techlist: string[] = [
     "ReactJs", "NextJs", "TailWindCss", "TypeScript", "ModernTheming", "Prisma",
-    "ShadCN", "BcryptJs", "Motion", "AuthJs", "Zod", "Web-Push"
   ];
 
   return (
@@ -93,23 +92,6 @@ const ContactMe: React.FunctionComponent = () => {
         </div>
       </motion.div>
 
-      <style jsx>{`
-        @keyframes rainbow {
-          0% { filter: hue-rotate(0deg); }
-          100% { filter: hue-rotate(360deg); }
-        }
-        .animate-rainbow {
-          animation: rainbow 6s linear infinite;
-        }
-
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        .animate-blink {
-          animation: blink 1s step-end infinite;
-        }
-      `}</style>
     </>
   );
 };
