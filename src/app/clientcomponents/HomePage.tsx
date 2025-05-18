@@ -193,7 +193,6 @@ const HomePage: React.FC<IHomePageProps> = ({ email }) => {
   },[menuclicked]);
   return (
     <AppContext.Provider value={{ appData, setAppData }}>
-      <NavBar email={email} />
       <div className="home-container-style">
         <div className="home-style">
           <ShowList email={email} noofUpdates={noofUpdates}/>
