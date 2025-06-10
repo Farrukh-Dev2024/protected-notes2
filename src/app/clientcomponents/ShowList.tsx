@@ -71,7 +71,7 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
         >
           {/* Responsive title and updated date on same line below md */}
           <div className="flex justify-between items-center mb-4 ">
-            <h1 className="w-1/2 truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
+            <h1 className="w-full truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
               {list.title || ""}
             </h1>
           </div>          
@@ -120,7 +120,7 @@ const ShowList: React.FunctionComponent<IShowListProps> = (props) => {
             </a>
           </div>
           <div>
-            <h1 className="w-1/2 truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
+            <h1 className="w-full truncate text-left font-bold text-base md:w-full md:mb-4 md:text-center">
               {list.title || ""}
             </h1>
           </div>
