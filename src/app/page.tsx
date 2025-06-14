@@ -99,6 +99,7 @@ export default async function Home({params,searchParams}:{params:Promise<{showpa
           <LoginForm />
         </>
         }
+        <p className="home-container-style !min-h-0 text-xs text-center">Application version&nbsp;<span className="hover:text-red-500 hover:font-semibold transition-all duration-500">1.05</span>&nbsp;last updated on&nbsp;<span className="hover:text-green-500 hover:font-semibold transition-colors duration-1000 ease-in-out">&nbsp;14-06-2025 5:40 pm </span></p>
     </div>
   );
   // return (

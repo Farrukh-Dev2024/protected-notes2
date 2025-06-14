@@ -26,6 +26,9 @@ model User {
   isBanned   Boolean   @default(false)
   messages   String?   @default("")
 
+  imageUploadCount     Int      @default(0)
+  lastImageUploadDate  DateTime?
+  
   lists      List[]   // ⬅️ One-to-many relation to Lists
 }
 
@@ -42,13 +45,27 @@ model List {
 }
 
 model ListItem {
-  id      Int       @id @default(autoincrement())
-  listid  Int
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt @default(now())
-  amount  Float
-  data    String
-  order   Int       @default(0)
+  id         Int      @id @default(autoincrement())
+  listid     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt @default(now())
+  amount     Float
+  data       String
+  order      Int      @default(0)
 
-  list    List     @relation(fields: [listid], references: [id],onDelete: Cascade)
+  images     Image[]  // ✅ Add relation
+
+  list       List     @relation(fields: [listid], references: [id], onDelete: Cascade)
 }
+
+model Image {
+  id          Int      @id @default(autoincrement())
+  listitemid  Int
+  size        Int
+  data        Bytes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @default(now())
+  
+  listitem    ListItem @relation(fields: [listitemid], references: [id], onDelete: Cascade)
+}
+

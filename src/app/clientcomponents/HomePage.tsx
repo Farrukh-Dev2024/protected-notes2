@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import ShowList from '@/app/clientcomponents/ShowList';
+import ShowList,{type ListWithItems} from '@/app/clientcomponents/ShowList';
 import NavBar from '@/app/clientcomponents/NavBar';
 import { TestDialog } from '@/app/clientcomponents/TestDialog';
 import  EditListTitle  from '@/app/clientcomponents/EditListTitle';
@@ -13,9 +13,7 @@ import YesNoMessageBox from './YesNoMessageBox';
 import  EditListItem  from '@/app/clientcomponents/EditListItem';
 import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS, CallBackProps } from 'react-joyride';
 
-type ListWithItems = Prisma.ListGetPayload<{
-  include: { items: true };
-}>;  
+
 
 interface IAppContext {
   email: string | null;
@@ -140,8 +138,12 @@ const HomePage: React.FC<IHomePageProps> = ({ email,showJoyRide }) => {
 
   const fnSaved_EditListItem = async (data: string,amount: number) => {
     if (selectedList && expandedList && selectedListItem){
-      const selectedListItemData = appData.userLists?.find((list) => list.id === appData.selectedList)?.items.find((item) => item.id === selectedListItem)?.data || "";
-      if (selectedListItemData !== data && data !== "") {
+      //const selectedListItemData = appData.userLists?.find((list) => list.id === appData.selectedList)?.items.find((item) => item.id === selectedListItem)?.data || "";
+      let selectedListItemData = "";
+      let selectedListItemAmount = 0;
+      const tmpitem = appData.userLists?.find((list) => list.id === appData.selectedList)?.items.find((item) => item.id === selectedListItem) || null;
+      if (tmpitem) {selectedListItemData=tmpitem.data;selectedListItemAmount=tmpitem.amount;}
+      if ( (selectedListItemData !== data && data !== "") || (selectedListItemAmount !== amount) ) {
         const updateresult = await updateListItem(expandedList,selectedListItem,data,amount);
         if (updateresult) {
           toast.success("List item updated successfully");
@@ -234,7 +236,7 @@ const HomePage: React.FC<IHomePageProps> = ({ email,showJoyRide }) => {
       <NavBar email={email} />
       <div className="home-container-style">
         <div className="home-style">
-          <ShowList email={email} noofUpdates={noofUpdates}/>
+          <ShowList email={email} noofUpdates={noofUpdates} setNoOfUpdates={setNoOfUpdates}/>
           <EditListTitle 
             operation={editListTitleOperation}
             open={openEditListTitle} 

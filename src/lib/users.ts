@@ -67,6 +67,11 @@ export async function getUserLists(identifier: { email?: string }) {
         include: {
           items: {
             orderBy: { order: 'asc' },
+            include: {
+              images: {
+                select: { id: true },
+              },
+            },            
           },
         },
       },
@@ -433,4 +438,9 @@ export async function escapeHtml(str: string): Promise<string> {
   return escaped.replace(/%%(.*?)%%/g, (_, encoded) =>
     atob(encoded)
   );
+}
+
+export async function GetListItemImages(itemid: number){
+  'use server'
+  //pr
 }

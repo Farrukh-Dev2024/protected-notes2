@@ -71,7 +71,7 @@ const EditListItem: React.FunctionComponent<IEditListItemProps> = (props) => {
                     (e)=>{
                       const value = e.target.value;
                       setAmount(value);
-                      if (isNaN(Number(value))) {
+                      if (isNaN(Number(value)) && value !== "+" && value !== "-") {
                         setAmount("0");
                       }
                       
